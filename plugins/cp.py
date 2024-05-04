@@ -97,7 +97,7 @@ async def account_login(bot: Client, m: Message):
         t_name =data['batchName']
         t_id =data['batchId']
         FFF = "**BATCH-ID - BATCH NAME**"
-        aa = f" ```{t_id}```  - **{t_name}**\n\n"
+        aa = f" {t_id}  - {t_name}\n\n"
         # aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}') > 4096:
             print(aa)
@@ -116,12 +116,12 @@ async def account_login(bot: Client, m: Message):
         nam2 =  data["name"]
         content =  data["contentType"]
         FFF = "**FOLDER-ID - FOLDER NAME**"
-        aa = f" ```{id1}```      - **{nam2}**\n\n"
+        aa = f" {id1}      - {nam2}\n\n"
         if len(f'{cool}{aa}') > 4096:
             print(aa)
             cool = ""
         cool += aa
-    await editable.edit(f'{"**You have these Folders :-**"}\n\n{FFF}\n\n{cool}')
+    await editable.edit(f'{"**You have these Folders :-**"}\n\n{FFF}\n\n`{cool}`')
     editable1 = await m.reply_text("**Now send the Batch ID to Download**")
     input2 = message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
