@@ -97,7 +97,13 @@ async def account_login(bot: Client, m: Message):
           token = data["data"]["token"]
           await m.reply_text(token)
       else:
-           await m.reply_text("go back to response")
+        error_message = resp.json().get('message')
+        if error_message:
+            return await m.reply_text(f"Login Failed: {error_message}")
+
+        
+      #else:
+           #await m.reply_text("go back to response")
       #token = "4ffd1627981589c0a1261f7a114fbbf8bc87c6d9"
       await m.reply_text(f"```{token}```")
     else:
