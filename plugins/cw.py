@@ -97,7 +97,7 @@ async def account_login(bot: Client, m: Message):
           token = data["data"]["token"]
           await m.reply_text(token)
       else:
-        error_message = resp.json().get('message')
+        error_message = response.json().get('message')
         if error_message:
             return await m.reply_text(f"Login Failed: {error_message}")
 
