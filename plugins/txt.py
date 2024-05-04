@@ -132,7 +132,7 @@ async def account_login(bot: Client, m: Message):
         t_name =data['course_name']
         FFF = "**BATCH-ID - BATCH NAME - INSTRUCTOR**"
        # aa = f" ```{data['id']}```      - **{data['course_name']}**\n\n"
-        aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
+        aa=f"**Batch Name -** {data['course_name']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}') > 4096:
             print(aa)
             cool = ""
