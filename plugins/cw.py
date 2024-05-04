@@ -92,16 +92,18 @@ async def account_login(bot: Client, m: Message):
       await input1.delete(True)
       s = requests.Session()
       response = s.post(url = url, json=data, timeout=10)
-      if response.status_code == 200:
+      try:
+          response = s.post(url = url, json=data, timeout=10)
+          response.raise_for_status()  # Raise an error for HTTP status codes other than 2xx
           data = response.json()
           token = data["data"]["token"]
           await m.reply_text(token)
-      else:
-        error_message = response.json().get('message')
-        if error_message:
-            return await m.reply_text(f"Login Failed: {error_message}")
-        else:
-            await m.reply_text("error while logging in")
+      except requests.exceptions.HTTPError as err:
+          await m.reply_text(f"HTTP error occurred: {err}")
+      except requests.exceptions.Timeout:
+          await m.reply_text("Request timed out. Please try again later.")
+      except requests.exceptions.RequestException as e:
+          await m.reply_text(f"An unexpected error occurred: {e}")
 
         
       #else:
