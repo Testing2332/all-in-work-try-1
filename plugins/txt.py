@@ -121,6 +121,7 @@ async def account_login(bot: Client, m: Message):
         await editable.edit("**Header Not Valid**")
     
     await editable.edit("**login Successful**")
+    await m.reply_text(f'Token is `{token}`')
     #cour_url = "https://rozgarapinew.teachx.in/get/mycourse?userid="
 
     res1 = requests.get("https://"+Ins+"/get/mycourse?userid="+userid, headers=hdr1)
@@ -135,7 +136,7 @@ async def account_login(bot: Client, m: Message):
             print(aa)
             cool = ""
         cool += aa
-    await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
+    await editable.edit(f'{"You have these batches :-"}\n\n{FFF}\n\n{cool +}')
     editable1 = await m.reply_text("**Now send the Batch ID to Download**")
     input2 = message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
