@@ -131,11 +131,11 @@ async def account_login(bot: Client, m: Message):
     for data in b_data:
         t_name = data['course_name']
         batch_info += f" ```{data['id']}```      - **{data['course_name']}**\n\n"
+        dost= f" ```{data['id']}```      - **{data['course_name']}**\n\n"
+    await m.reply_text(dost)    
     #await editable.edit(f'{"You have these batches :-"}\n\n**BATCH-ID - BATCH NAME **\n\n{batch_info}')
     await editable.edit(f"You have these batches :-\n\n**BATCH-ID - BATCH NAME**\n\n{batch_info}")
-    await m.reply_text(f'{batch_info}')
-    #await m.reply_text(f'Hii\n\n{data['id']}')
-
+    
     editable1 = await m.reply_text("**Now send the Batch ID to Download**")
     input2 = message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
