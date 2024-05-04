@@ -127,15 +127,18 @@ async def account_login(bot: Client, m: Message):
     res1 = requests.get("https://"+Ins+"/get/mycourse?userid="+userid, headers=hdr1)
     b_data = res1.json()['data']
     await m.reply_text(b_data)
-    batch_info = ""
+    cool = ""
     for data in b_data:
-        t_name = data['course_name']
-        batch_info += f" ```{data['id']}```      - **{data['course_name']}**\n\n"
-        dost= f" ```{data['id']}```      - **{data['course_name']}**\n\n"
-    await m.reply_text(dost)    
-    #await editable.edit(f'{"You have these batches :-"}\n\n**BATCH-ID - BATCH NAME **\n\n{batch_info}')
-    await editable.edit(f"You have these batches :-\n\n**BATCH-ID - BATCH NAME**\n\n{batch_info}")
-    
+        t_name =data['course_name']
+        FFF = "**BATCH-ID - BATCH NAME - INSTRUCTOR**"
+       # aa = f" ```{data['id']}```      - **{data['course_name']}**\n\n"
+        aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
+        if len(f'{cool}{aa}') > 4096:
+            print(aa)
+            cool = ""
+        cool += aa
+    await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
+    await m.reply_text(aa)
     editable1 = await m.reply_text("**Now send the Batch ID to Download**")
     input2 = message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
