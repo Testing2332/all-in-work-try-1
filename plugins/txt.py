@@ -132,7 +132,7 @@ async def account_login(bot: Client, m: Message):
         t_name =data['course_name']
         FFF = "**BATCH-ID - BATCH NAME - INSTRUCTOR**"
        # aa = f" ```{data['id']}```      - **{data['course_name']}**\n\n"
-        aa=f"**Batch Name -** {data['course_name']}\n**Batch ID -** ```{data['id']}```\n\n"
+        aa=f"**Batch Name -** {data['course_name']}\n**Batch ID -** {data['id']}\n\n"
         if len(f'{cool}{aa}') > 4096:
             print(aa)
             cool = ""
@@ -181,7 +181,7 @@ async def account_login(bot: Client, m: Message):
         tid = (data["topicid"])
         zz = len(tid)
         BBB = f"{'**TOPIC-ID    - TOPIC     - VIDEOS**'}\n"
-        hh = f"```{tid}```     - **{t_name} - ({zz})**\n"
+        hh = f"{tid}     - {t_name} - ({zz})\n"
         #hh = f"**Topic -** {t_name}\n**Topic ID - ** ```{tid}```\nno. of videos are : {zz}\n\n"
         if len(f'{cool1}{hh}') > 9999:
             cool1 = ""
@@ -279,9 +279,9 @@ async def account_login(bot: Client, m: Message):
                 mm = "Ankit-Wih-Rojgar"
                 #await m.reply_text(BBB1, hh)
                 
-                with open(f'{mm}{t_name}.txt', 'a') as f:
+                with open(f'{t_name}.txt', 'a') as f:
                     f.write(f"{tid}:{b}\n")
-        await m.reply_document(f"{mm}{t_name}.txt")
+        await m.reply_document(f"{t_name}.txt")
     except Exception as e:
         await m.reply_text(str(e))
     await m.reply_text("Done")
