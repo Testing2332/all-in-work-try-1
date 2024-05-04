@@ -66,22 +66,22 @@ async def account_login(bot: Client, m: Message):
         "deviceToken": "fYdfgaUaQZmYP7vV4r2rjr:APA91bFPn3Z4m_YS8kYQSthrueUh-lyfxLghL9ka-MT0m_4TRtlUu7cy90L8H6VbtWorg95Car6aU9zjA-59bZypta9GNNuAdUxTnIiGFxMCr2G3P4Gf054Kdgwje44XWzS9ZGa4iPZh"
        }
     headers = {
-       # "Host": "elearn.crwilladmin.com",
-       # "Token": "",
-       #"Usertype": "",
-       # "Appver": "1.55",
-       # "Apptype": "android",
-       # "Content-Type": "application/json; charset=UTF-8",
-       # "Content-Length": "313",
-       # "Accept-Encoding": "gzip, deflate",
+        "Host": "elearn.crwilladmin.com",
+        "Token": "",
+        "Usertype": "",
+        "Appver": "1.55",
+        "Apptype": "android",
+        "Content-Type": "application/json; charset=UTF-8",
+        "Content-Length": "313",
+        "Accept-Encoding": "gzip, deflate",
         "user-agent": "okhttp/5.0.0-alpha.2",
-       # 'Connection': 'Keep-Alive'
+        'Connection': 'Keep-Alive'
        }
-    #proxy_host = ['47.254.153.200:80']
-    #proxies = {
-     #      'https': proxy_host,
-      #     'http': proxy_host,
-      # }
+    proxy_host = ['47.254.153.200:80']
+    proxies = {
+           'https': proxy_host,
+           'http': proxy_host,
+       }
     editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password** \n or \nSend **TOKEN** like This this:-  **TOKEN**" )
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
@@ -100,6 +100,8 @@ async def account_login(bot: Client, m: Message):
         error_message = response.json().get('message')
         if error_message:
             return await m.reply_text(f"Login Failed: {error_message}")
+        else:
+            await m.reply_text("error while logging in")
 
         
       #else:
