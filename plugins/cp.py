@@ -82,7 +82,13 @@ async def account_login(bot: Client, m: Message):
     if resp.status_code==200:
         pass
     else:
-        editable = await m.reply_text("Login Failed Check Response")
+        error_message = resp.json().get('message')
+        if error_message:
+            return await m.reply_text(f"Login Failed: {error_message}")
+ 
+    
+    #else:
+        #editable = await m.reply_text("Login Failed Check Response")
     b_data = resp.json()["data"]["totalBatches"]
     print(b_data)
     await input1.delete(True)
