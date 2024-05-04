@@ -97,7 +97,7 @@ async def account_login(bot: Client, m: Message):
         t_name =data['batchName']
         t_id =data['batchId']
         FFF = "**BATCH-ID - BATCH NAME**"
-        aa = f" {t_id}  - {t_name}\n\n"
+        aa = f" `{t_id}`  - {t_name}\n\n"
         # aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}') > 4096:
             print(aa)
@@ -109,7 +109,7 @@ async def account_login(bot: Client, m: Message):
     cr = input2.text
     resp = s.get(f'https://api.classplusapp.com/v2/course/content/get?courseId={cr}', headers=headers)
     print(resp.content)
-    b_data = resp.txt()['data']['courseContent']
+    b_data = resp.json()['data']['courseContent']
     cool = ""
     for data in b_data:
         id1 = data['id']
