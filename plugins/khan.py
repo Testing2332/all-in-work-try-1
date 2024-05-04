@@ -61,7 +61,11 @@ async def account_login(bot: Client, m: Message):
         token = data["data"]["access_token"]
         await editable.edit(f"**Login Successful:** ```{token}```")
     else:
-         await m.reply_text("Go back to response")
+         #await m.reply_text("Go back to response")
+         error_message = response.content.decode("utf-8")
+         print("Login Failed. Response:", error_message)  # Print the error message
+         await m.reply_text("Login Failed. Check the console for details.")
+    
     headers = {
             'Host': 'api.penpencil.xyz',
             'authorization': f"Bearer {token}",
