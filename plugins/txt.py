@@ -136,7 +136,7 @@ async def account_login(bot: Client, m: Message):
             print(aa)
             cool = ""
         cool += aa
-    await editable.edit(f'{"You have these batches :-"}\n\n{FFF}\n\n{cool +}')
+    await editable.edit(f'{"You have these batches :-"}\n\n{FFF}\n\n{aa}')
     editable1 = await m.reply_text("**Now send the Batch ID to Download**")
     input2 = message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
